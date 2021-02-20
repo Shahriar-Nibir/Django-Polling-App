@@ -35,3 +35,8 @@ input {
   margin-top: 1rem;
   align-items: center;
 }
+
+.poll {
+  border: 2px solid;
+  background: #04173a;
+}
