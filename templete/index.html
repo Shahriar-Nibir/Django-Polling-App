@@ -9,30 +9,44 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static './css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static './css/style.css' %}">
+    <style>
+        .poll {
+            border: 2px solid;
+            padding:15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .no-underline {
+            text-decoration: none;
+            color:#231e33;
+        }
+        .no-underline:hover {
+            text-decoration:wavy;
+            color:#939197;
+        }
+    </style>
 </head>
 <body>
     {% include 'nav.html' %}
 
 
+<br>
 
-
-<div class="container">
+<div class="container-fluid">
+    <div class="row">
+    {% for poll in polls %}
+    
     <div class="col-md-6">
         <div class="poll">
-            <h1>Poll 1</h1>
+            <a class='no-underline' href="{% url 'poll' poll.id %}">
+            <h1>{{poll}}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam eum cum pariatur eius? Vero, harum ullam sint sunt eligendi ipsam.</p>
+            </a>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="poll">
-            <h1>Poll 1</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam eum cum pariatur eius? Vero, harum ullam sint sunt eligendi ipsam.</p>
-        </div>
+    {% endfor %}
     </div>
 </div>
-
-
-
 
 
 

@@ -9,3 +9,9 @@ class CreateUser(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class ChoiseForm(ModelForm):
+    class Meta:
+        model = Choice
+        fields = '__all__'

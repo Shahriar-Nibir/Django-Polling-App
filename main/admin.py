@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Poll)
 admin.site.register(Option)
 admin.site.register(Group)
+admin.site.register(Choice)
