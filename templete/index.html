@@ -39,7 +39,7 @@
     <div class="col-md-6">
         <div class="poll">
             <a class='no-underline' href="{% url 'poll' poll.id %}">
-            <h1>{{poll}}</h1>
+            <h1>{{poll.poll_name}}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam eum cum pariatur eius? Vero, harum ullam sint sunt eligendi ipsam.</p>
             </a>
         </div>
@@ -47,7 +47,22 @@
     {% endfor %}
     </div>
 </div>
-
+<br>
+<br>
+<hr>
+<div class="container d-flex justify-content-center">
+    <div class="col-8">
+        <p class="text-center h2">My Polls</p>
+        <hr>
+        {% for mypoll in mypolls %}
+        <a href="{% url 'result' mypoll.id %}">
+        <div>
+            {{mypoll.poll_name}}</a>
+        <hr>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 
 <script src="{% static './js/all.js' %}"></script>

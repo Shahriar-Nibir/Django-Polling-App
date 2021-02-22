@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        .right {
+            float:right;
+            border: 2px solid;
+            padding-left: 2px;
+            padding-right: 2px;
+            border-color: rgb(30, 4, 126);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <br>
+    <br>
+    <div class="container d-flex justify-content-center">
+        <div class="col-8">
+            <p class="h4">
+                Poll:{{poll.poll_name}}
+                <br>
+                Description:{{poll.description}}
+                <hr>
+            </p>
+            {% for result in results %}
+                {{result.option_name}}
+                <p class="right">{{result.vote}}</p>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

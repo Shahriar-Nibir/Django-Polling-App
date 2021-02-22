@@ -11,7 +11,13 @@ class CreateUser(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-class ChoiseForm(ModelForm):
+class PollForm(ModelForm):
     class Meta:
-        model = Choice
-        fields = '__all__'
+        model = Poll
+        fields = ['poll_name', 'description', 'group']
+
+
+class GroupForm(ModelForm):
+    class Meta:
+        model = Group
+        fields = ['group_name', 'user']
