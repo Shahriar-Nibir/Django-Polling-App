@@ -25,7 +25,7 @@ class Poll(models.Model):
 class Option(models.Model):
     option_name = models.CharField(max_length=200, null=True)
     vote = models.PositiveIntegerField(default=0, null=True)
-    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, null=True)
 
     # def __str__(self):
     #    return self.option_name+'-'+self.poll.poll_name

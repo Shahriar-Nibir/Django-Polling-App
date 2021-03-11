@@ -21,14 +21,18 @@
     {% include 'nav.html' %}
     <br>
     <br>
-    <div class="container">
-        <p class="text-center text-danger">
+    <div class="container d-flex justify-content-center">
+        <div class="col-8 bg-secondary">
+        <p class="text-center text-light h6 lead p-3">
             Befor creating Poll please create a group including the voters you want to allow.
             <br>
             If the group already exists <a href="{% url 'createpoll' %}">click here.</a>
         </p>
     </div>
-    <div class="container col-8 form d-flex justify-content-center p-4">
+    </div>
+    <br>
+    <div class="container col-6 form d-flex justify-content-center p-5">
+        
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ form.as_p}}

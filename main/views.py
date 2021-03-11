@@ -64,7 +64,8 @@ def poll(request, pk):
 def confirm(request, pk):
     option1 = Option.objects.get(id=pk)
     user1 = request.user
-    group = Group.objects.get(user=user1)
+    poll = option1.poll
+    group = poll.group
     if request.method == 'POST':
         option1.vote += 1
         option1.save()
@@ -114,15 +115,18 @@ def createpoll(request):
 def addoptions(request, pk):
     poll = Poll.objects.get(id=pk)
     OptionForm = modelformset_factory(
-        Option, fields=('option_name',), extra=10)
+        Option, fields=('option_name',), extra=8)
     queryset = Option.objects.none()
-    form = OptionForm(request.POST or None, queryset=queryset)
+    #queryset = queryset(poll=poll)
+    form = OptionForm(queryset=queryset)
     context = {'form': form}
-    if form.is_valid:
-        instances = form.save(commit=False)
-        for instance in instances:
-            instance.poll = poll
-            instance.save()
+    if request.method == 'POST':
+        form = OptionForm(request.POST)
+        if form.is_valid:
+            instances = form.save(commit=False)
+            for instance in instances:
+                instance.poll = poll
+                instance.save()
             return redirect('home')
     return render(request, 'addoptions.html', context)
 
@@ -133,3 +137,33 @@ def result(request, pk):
     results = poll.option_set.all()
     context = {'results': results, 'poll': poll}
     return render(request, 'result.html', context)
+
+
+@login_required(login_url='login')
+def updatepoll(request, pk):
+    poll = Poll.objects.get(id=pk)
+    UpdateForm = modelformset_factory(
+        Option, fields=('option_name',), extra=8)
+    queryset = Option.objects.filter(poll=poll)
+    #queryset = queryset(poll=poll)
+    form = UpdateForm(queryset=queryset)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = UpdateForm(request.POST)
+        if form.is_valid:
+            instances = form.save(commit=False)
+            for instance in instances:
+                instance.poll = poll
+                instance.save()
+            return redirect('home')
+    return render(request, 'updatepoll.html', context)
+
+
+@login_required(login_url='login')
+def deletepoll(request, pk):
+    poll = Poll.objects.get(id=pk)
+    context = {'poll': poll}
+    if request.method == 'POST':
+        poll.delete()
+        return redirect('home')
+    return render(request, 'deletepoll.html', context)

@@ -11,7 +11,7 @@ urlpatterns = [
     path('createpoll', views.createpoll, name='createpoll'),
     path('addoptions/<str:pk>', views.addoptions, name='addoptions'),
     path('result/<str:pk>', views.result, name='result'),
-    path('logoutUser', views.logoutUser, name='logoutUser')
-
-
+    path('logoutUser', views.logoutUser, name='logoutUser'),
+    path('updatepoll/<str:pk>', views.updatepoll, name='updatepoll'),
+    path('deletepoll/<str:pk>', views.deletepoll, name='deletepoll')
 ]

@@ -32,7 +32,7 @@
 
 <br>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
     {% for poll in polls %}
     
@@ -40,7 +40,7 @@
         <div class="poll">
             <a class='no-underline' href="{% url 'poll' poll.id %}">
             <h1>{{poll.poll_name}}</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam eum cum pariatur eius? Vero, harum ullam sint sunt eligendi ipsam.</p>
+            <p>{{poll.description}}</p>
             </a>
         </div>
     </div>
@@ -52,15 +52,29 @@
 <hr>
 <div class="container d-flex justify-content-center">
     <div class="col-8">
+        
         <p class="text-center h2">My Polls</p>
         <hr>
+        <div class="row">
         {% for mypoll in mypolls %}
-        <a href="{% url 'result' mypoll.id %}">
-        <div>
-            {{mypoll.poll_name}}</a>
-        <hr>
+        <div class="col-8">
+            {{mypoll.poll_name}}
         </div>
+
+
+
+        <div class = "col-4 mx-auto">
+        <a href="{% url 'result' mypoll.id %}"" class="no-underline btn btn-sm btn-success" >
+            View</a>
+        <a href="{% url 'updatepoll' mypoll.id %}"" class="no-underline btn btn-sm btn-primary" >
+                Update</a>
+        <a href="{% url 'deletepoll' mypoll.id %}"" class="no-underline btn btn-sm btn-danger" >
+                    Delete</a>
+        </div>
+
+        <hr>
         {% endfor %}
+    </div>
     </div>
 </div>
 

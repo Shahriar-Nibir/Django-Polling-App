@@ -15,9 +15,19 @@ class PollForm(ModelForm):
     class Meta:
         model = Poll
         fields = ['poll_name', 'description', 'group']
+        widgets = {
+            'poll_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'group': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'})
+        }
 
 
 class GroupForm(ModelForm):
     class Meta:
         model = Group
         fields = ['group_name', 'user']
+
+        widgets = {
+            'group_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'user': forms.SelectMultiple(attrs={'class': 'form-control'})
+        }

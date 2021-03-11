@@ -13,9 +13,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+import mimetypes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+mimetypes.add_type("text/css", ".css", True)
 
 
 # Quick-start development settings - unsuitable for production
@@ -120,8 +122,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
+# STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static')
+# ]
+
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'asset')
+STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'static')
 ]
-MEDIA_URL = '/media/'
+
+
+MEDIA_URL = '/image/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/image')

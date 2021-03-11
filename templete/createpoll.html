@@ -20,8 +20,10 @@
 <body>
     {% include 'nav.html' %}
     <br>
-    <br>
-    <div class="container col-8 form d-flex justify-content-center p-4">
+    <div class="container text-center">
+        <div class="h4">Enter Poll Credentials</div>
+    </div>
+    <div class="container col-6 form d-flex justify-content-center p-3">
         <br>
         <form action="" method="POST">
             {% csrf_token %}
